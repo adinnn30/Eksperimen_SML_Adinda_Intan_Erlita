@@ -5,9 +5,6 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   run-preprocess:
     runs-on: ubuntu-latest
@@ -15,8 +12,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          persist-credentials: true
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -27,16 +22,11 @@ jobs:
         run: |
           pip install pandas scikit-learn numpy
 
-      - name: Run preprocessing script
-        run: python preprocessing/automate-Adinda-Intan-Erlita.py
+      - name: Run script
+        run: python automate-Adinda-Intan-Erlita.py
 
-      - name: Check output
-        run: ls -lah preprocessing/
-
-      - name: Commit and Push changes
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add .
-          git commit -m "Automated preprocessing update" || exit 0
-          git push
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: cleaned-data
+          path: reviews_cleaned.csv
