@@ -30,15 +30,13 @@ jobs:
       - name: Run preprocessing script
         run: python preprocessing/automate-Adinda-Intan-Erlita.py
 
-      - name: Check output files
-        run: |
-          echo "📦 Cek isi folder preprocessing:"
-          ls -lah preprocessing/
+      - name: Check output
+        run: ls -lah preprocessing/
 
       - name: Commit and Push changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .
-          git commit -m "Automated Preprocessing: Update cleaned data" || exit 0
+          git commit -m "Automated preprocessing update" || exit 0
           git push
