@@ -12,15 +12,12 @@ import re
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
-# =========================
 # CONFIG
-# =========================
-DATA_PATH = "reviews.csv"
+DATA_PATH = "Marketplace-Reviews_raw/reviews.csv"
 OUTPUT_PATH = "reviews_cleaned.csv"
 
-# =========================
+
 # LOAD DATA
-# =========================
 def load_data(path):
     print(" Loading dataset...")
 
@@ -35,9 +32,8 @@ def load_data(path):
 
     return df
 
-# =========================
+
 # CLEAN TEXT
-# =========================
 def clean_text(text):
     text = str(text).lower()
     text = re.sub(r'[^\w\s]', '', text)
@@ -45,9 +41,8 @@ def clean_text(text):
     text = re.sub(r'\s+', ' ', text).strip()
     return text
 
-# =========================
+
 # PREPROCESSING
-# =========================
 def preprocess(df):
     print("\n Preprocessing dimulai...")
 
@@ -85,17 +80,14 @@ def preprocess(df):
 
     return df
 
-# =========================
 # SAVE
-# =========================
 def save_data(df, path):
     df.to_csv(path, index=False)
     print(f"\n Data saved: {path}")
     print(f" Final shape: {df.shape}")
 
-# =========================
+
 # MAIN
-# =========================
 def main():
     print(" START PIPELINE\n")
 
