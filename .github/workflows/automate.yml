@@ -28,7 +28,7 @@ jobs:
 
       - name: Run preprocessing script
         run: |
-          python automate-Adinda-Intan-Erlita.py
+          python preprocessing/automate-Adinda-Intan-Erlita.py
 
       - name: Commit and Push changes
         run: |
