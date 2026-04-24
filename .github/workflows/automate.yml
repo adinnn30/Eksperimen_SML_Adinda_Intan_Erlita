@@ -19,19 +19,21 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12.7' 
+          python-version: '3.12.7'
 
       - name: Install dependencies
         run: |
+          pip install --upgrade pip
           pip install pandas scikit-learn numpy
 
-      - name: Run script
-        run: python automate-Adinda-Intan-Erlita.py
+      - name: Run preprocessing script
+        run: |
+          python automate-Adinda-Intan-Erlita.py
 
       - name: Commit and Push changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .
-          git commit -m "Automated Preprocessing: Update cleaned data" || exit 0
+          git commit -m "Automated Preprocessing: Update cleaned data" || echo "No changes to commit"
           git push
